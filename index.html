@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>課表系統</title>
+    <!-- 引入 Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">課表系統</h1>
+
+        <!-- 操作按鈕 -->
+        <div class="action-buttons">
+            <button id="saveJsonBtn" class="btn btn-success">儲存為 JSON 檔案</button>
+            <button id="printPdfBtn" class="btn btn-secondary">預覽並列印 PDF</button>
+            <button id="loadJsonBtn" class="btn btn-info">讀取 JSON 檔案</button>
+        </div>
+
+        <!-- 課表相關表單 -->
+        <div class="form-group">
+            <label for="category">選擇大類:</label>
+            <select id="category" class="form-control">
+                <option value="">請選擇大類</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="subCategory">選擇小類:</label>
+            <select id="subCategory" class="form-control" disabled>
+                <option value="">請先選擇大類</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="time">選擇上課時間:</label>
+            <input type="time" id="time" step="1800" class="form-control">
+        </div>
+
+        <button id="addCourseBtn" class="btn btn-primary btn-block">新增課程</button>
+
+        <h2 class="mt-5">課程列表</h2>
+
+        <!-- 課程列表表格 -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">節次</th>
+                    <th scope="col">大類</th>
+                    <th scope="col">小類</th>
+                    <th scope="col">時間</th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody id="courseList">
+                <!-- 課程資料將動態插入這裡 -->
+            </tbody>
+        </table>
+
+      <!-- Modal 修改視窗 -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">修改課程</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="modalCategory">選擇大類:</label>
+                    <select id="modalCategory" class="form-control">
+                        <!-- 大類選單會由 JS 動態填入 -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalSubCategory">選擇小類:</label>
+                    <select id="modalSubCategory" class="form-control">
+                        <!-- 小類選單會由 JS 動態填入 -->
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalTime">選擇上課時間:</label>
+                    <input type="time" id="modalTime" step="1800" class="form-control">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <button type="button" id="saveEditBtn" class="btn btn-primary">保存修改</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- 隱藏的檔案輸入 -->
+        <input type="file" id="loadJsonInput" accept=".json" class="form-control-file d-none">
+    </div>
+
+    <!-- 引入 Bootstrap JS & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
